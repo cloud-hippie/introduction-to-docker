@@ -7,6 +7,9 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
 
+# Rthe app
+EXPOSE 5000
+
 # Install pip requirements
 COPY requirements.txt .
 RUN python -m pip install -r requirements.txt
@@ -20,6 +23,5 @@ RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /
 USER appuser
 
 ENV FLASK_APP=app.py
-
 
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
